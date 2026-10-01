@@ -62,6 +62,9 @@ jobs:
           name: native-macos_64
           path: src/main/native/natives/macos_64
 
+      - name: Grant execute permission for Gradle
+        run: chmod +x gradlew
+
       - name: Build with Gradle
         run: ./gradlew build -x syncNative
 
