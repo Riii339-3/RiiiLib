@@ -1,0 +1,32 @@
+
+name: Native Windows
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build native library
+        working-directory: native-example
+        run: cargo build --release
+
+      - name: Upload native library
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-windows_64
+          path: native-example/target/release/*.dll
+          if-no-files-found: error

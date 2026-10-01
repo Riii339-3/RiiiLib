@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.riiimc.riiilib.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "HolderReferenceAccessor",
+    "ImmutableRegistryAccessAccessor",
+    "ImmutableRegistryAccessMixin",
+    "MappedRegistryAccessor",
+    "MappedRegistryMixin",
+    "RegistryAccessMixin",
+    "RegistryManagerAccessor"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
