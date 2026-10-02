@@ -30,3 +30,4 @@ native-example/Cargo.lock
 
 # Other
 *.log
+*/target

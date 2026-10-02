@@ -9,7 +9,11 @@ object StorageAPI {
     private val riiilibDir =  Files.createDirectories(Path.of(".${RiiiLib.MODID}"))
 
     fun filePush(path: String): Path? {
-        val caller = Throwable().stackTrace[1]
+        val caller = Throwable().stackTrace
+            .drop(1)
+            .firstOrNull {
+                it.className != StorageAPI::class.java.name
+            } ?: return null
         val className = caller.className
         val packageName = className.substringBeforeLast(".")
 
@@ -58,9 +62,15 @@ object StorageAPI {
                 return null
         }
 
+        val nativeFileName = if (os.contains("windows")) {
+            "$fileName$extension"
+        } else {
+            "lib$fileName$extension"
+        }
+
         val resourcePath = path
             .resolve(platform)
-            .resolve("$fileName$extension")
+            .resolve(nativeFileName)
 
         return filePush(resourcePath.toString().replace('\\', '/'))
     }

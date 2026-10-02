@@ -13,7 +13,7 @@ object NativeManager {
     fun init() {
         val file = StorageAPI.nativeFilePush(
             Path.of("natives"),
-            "native_example"
+            "native"
         ) ?: return
 
 
@@ -23,7 +23,8 @@ object NativeManager {
     }
 
     fun load(path: Path) {
-        println("NativeManager load: $path")
+        LOGGER.debug("Loading native library from: {}", path.toAbsolutePath())
         System.load(path.toAbsolutePath().toString())
+        LOGGER.info("Loaded native library from: {}", path.toAbsolutePath())
     }
 }
