@@ -136,7 +136,8 @@ def earlyagentJarTask = tasks.register('earlyagentJar', Jar) {
 
     manifest {
         attributes(
-                'Agent-Class': 'io.github.riiimc.riiilib.agent.RiiiLibAgent'
+                'Agent-Class': 'io.github.riiimc.riiilib.earlyagent.RiiiLibAgent',
+                "Can-Retransform-Classes": "true"
         )
     }
 }
@@ -313,13 +314,13 @@ dependencies {
     implementation "curse.maven:probejs-585406:8304356"
     //jarJar(implementation('org.scijava:native-lib-loader:2.5.0'))
 
-    jarJar(implementation("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}"))
+    implementation("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
 
     compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.3.7-beta.3"))
     implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-neoforge:0.3.7-beta.3")) {
     }
 
-    jarJar(implementation("dev.anvilcraft.lib:anvillib-neoforge-1.21.1:2.0.0+snapshot.546"))
+    implementation("dev.anvilcraft.lib:anvillib-neoforge-1.21.1:2.0.0+snapshot.546")
 
     //implementation "maven.modrinth:AANobbMI:uMOpc5uV" // Sodium or Iris
     //implementation "maven.modrinth:YL57xq9U:KduFYu4t" // Sodium or Iris
@@ -330,9 +331,14 @@ dependencies {
     }
     implementation("foundry.imguimc:imguimc-neoforge-${project.minecraft_version}:${project.imguimc_version}")
 
-    jarJar(implementation("maven.modrinth:fancytabsections:6.2.1-NEOFORGE-1.21.1"))
-    jarJar(implementation("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}"))
+    implementation("maven.modrinth:fancytabsections:6.2.1-NEOFORGE-1.21.1")
+    implementation("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
 
+    earlyagentImplementation  'org.ow2.asm:asm:9.6'
+
+    // 必要に応じてユーティリティやツリー API も追加
+    earlyagentImplementation  'org.ow2.asm:asm-commons:9.6'
+    earlyagentImplementation  'org.ow2.asm:asm-util:9.6'
     // runClient / runServer のクラスパス
     //additionalRuntimeClasspath 'org.scijava:native-lib-loader:2.5.0'
     // Example mod dependency with JEI

@@ -33,12 +33,12 @@ jobs:
           targets: ${{ matrix.target }}
 
       - name: Build native library
-        working-directory: native-example
+        working-directory: native
         run: cargo build --release --target ${{ matrix.target }}
 
       - name: Upload native library
         uses: actions/upload-artifact@v4
         with:
           name: native-${{ matrix.platform }}
-          path: native-example/target/${{ matrix.target }}/release/*.dylib
+          path: native/target/${{ matrix.target }}/release/*.dylib
           if-no-files-found: error

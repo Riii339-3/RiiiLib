@@ -14,7 +14,11 @@ object NativeManager {
         val file = StorageAPI.nativeFilePush(
             Path.of("natives"),
             "native"
-        ) ?: return
+        )
+        if (file == null) {
+            LOGGER.error("Failed to push native library")
+            return
+        }
 
 
         load(file)

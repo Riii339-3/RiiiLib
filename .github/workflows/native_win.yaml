@@ -19,12 +19,12 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Build native library
-        working-directory: native-example
+        working-directory: native
         run: cargo build --release
 
       - name: Upload native library
         uses: actions/upload-artifact@v4
         with:
           name: native-windows_64
-          path: native-example/target/release/*.dll
+          path: native/target/release/*.dll
           if-no-files-found: error

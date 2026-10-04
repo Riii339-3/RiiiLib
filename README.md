@@ -15,7 +15,7 @@
 - サーバーサイドだけで実装可能なDynamicRegistry(WIP)
 - Thread管理を安全にするライブラリ  
 - データパックで定義できる機能の追加・拡張  
-- Vulkan・OpenCLの使用簡略化
+- Vulkan・OpenCLの使用簡略化(できたらいいな)
 - Flywheel/Veilの汎用ライブラリ
 - その他、私が使いたい機能の追加  
 - ~~ぱおーん~~  
