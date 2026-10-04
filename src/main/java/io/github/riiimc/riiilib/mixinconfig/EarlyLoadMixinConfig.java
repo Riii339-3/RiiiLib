@@ -1,71 +1,64 @@
 package io.github.riiimc.riiilib.mixinconfig;
 
+import com.sun.tools.attach.AgentLoadException;
+import cpw.mods.modlauncher.serviceapi.ILaunchPluginService;
+import io.github.riiimc.riiilib.agent.AgentLoader;
+import io.github.riiimc.riiilib.transformer.RiiiLibTransformer;
+import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfig;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigSource;
+import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
+import java.util.List;
 import java.util.Set;
 
 // TODO: Implement
-public class EarlyLoadMixinConfig implements IMixinConfig {
+public class EarlyLoadMixinConfig implements IMixinConfigPlugin {
+    private static boolean registered = false;
+    static {
+        try {
+            if (!registered)
+            {
+                AgentLoader.load();
+                registered = true;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load Agent", e);
+        }
+    }
     @Override
-    public MixinEnvironment getEnvironment() {
-        return null;
+    public void onLoad(String s) {
     }
 
     @Override
-    public String getName() {
+    public String getRefMapperConfig() {
         return "";
     }
 
     @Override
-    public IMixinConfigSource getSource() {
-        return null;
+    public boolean shouldApplyMixin(String s, String s1) {
+        return true;
     }
 
     @Override
-    public String getCleanSourceId() {
-        return "";
-    }
-
-    @Override
-    public String getMixinPackage() {
-        return "";
-    }
-
-    @Override
-    public int getPriority() {
-        return 0;
-    }
-
-    @Override
-    public IMixinConfigPlugin getPlugin() {
-        return null;
-    }
-
-    @Override
-    public boolean isRequired() {
-        return false;
-    }
-
-    @Override
-    public Set<String> getTargets() {
-        return Set.of();
-    }
-
-    @Override
-    public <V> void decorate(String key, V value) {
+    public void acceptTargets(Set<String> set, Set<String> set1) {
 
     }
 
     @Override
-    public boolean hasDecoration(String key) {
-        return false;
+    public List<String> getMixins() {
+        return List.of();
     }
 
     @Override
-    public <V> V getDecoration(String key) {
-        return null;
+    public void preApply(String s, ClassNode classNode, String s1, IMixinInfo iMixinInfo) {
+
+    }
+
+    @Override
+    public void postApply(String s, ClassNode classNode, String s1, IMixinInfo iMixinInfo) {
+        RiiiLibTransformer.transform(ILaunchPluginService.Phase.AFTER, classNode);
     }
 }

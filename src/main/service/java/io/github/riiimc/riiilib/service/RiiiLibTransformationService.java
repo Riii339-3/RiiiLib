@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Set;
 
-public class RiiiLibService implements ITransformationService {
+public class RiiiLibTransformationService implements ITransformationService {
     @Override
     public @NotNull String name() {
         return "riiilibservice";

@@ -9,7 +9,6 @@ import java.nio.file.Path
 import java.nio.file.StandardCopyOption
 import java.util.Locale.getDefault
 
-@Deprecated("Use AgentLoader.load() instead")
 object AgentLoader {
     lateinit var agentPath: Path
     private var UNSAFE: Unsafe
