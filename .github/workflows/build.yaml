@@ -68,14 +68,9 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -x syncNative
 
-      - name: Archive Build Artifacts
-        run: |
-          mkdir -p artifacts
-          zip -r artifacts/riiilib.zip build/libs/
-
-      - name: Upload Build Artifacts
+      - name: Upload Mod JAR
         uses: actions/upload-artifact@v4
         with:
-          name: riiilib
-          path: artifacts/riiilib.zip
+          name: mod-jar
+          path: build/libs/*.jar
           if-no-files-found: error
