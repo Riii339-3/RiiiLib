@@ -2,6 +2,7 @@ package io.github.riiimc.riiilib.transformer;
 
 import cpw.mods.modlauncher.api.ITransformerActivity;
 import cpw.mods.modlauncher.serviceapi.ILaunchPluginService;
+import net.minecraft.world.entity.LivingEntity;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.ClassNode;
 

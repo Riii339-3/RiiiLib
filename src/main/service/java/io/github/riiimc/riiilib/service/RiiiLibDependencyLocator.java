@@ -17,10 +17,8 @@ public class RiiiLibDependencyLocator implements IDependencyLocator {
             throw new Error();
         } else {
             try {
-                //LOGGER.info("[EnumExtenderJS] try load mainMod form:{}", Path.of(mainModURL.toURI()).toAbsolutePath());
                 pipeline.addJarContent(JarContents.of(Path.of(mainModURL.toURI())), ModFileDiscoveryAttributes.DEFAULT, IncompatibleFileReporting.WARN_ALWAYS);
             } catch (URISyntaxException e) {
-                //LOGGER.error(e.toString());
                 throw new RuntimeException(e);
             }
         }
