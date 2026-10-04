@@ -4,6 +4,7 @@
   "package": "io.github.riiimc.riiilib.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ChatFormattingMixin",
     "HolderReferenceAccessor",
     "ImmutableRegistryAccessAccessor",
     "ImmutableRegistryAccessMixin",
@@ -19,5 +20,6 @@
   },
   "overwrites": {
     "requireAnnotations": true
-  }
+  },
+  "plugin": "io.github.riiimc.riiilib.mixinconfig.EarlyLoadMixinConfig"
 }

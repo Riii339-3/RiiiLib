@@ -4,11 +4,11 @@
 - 独自のRegistrate  
 - Jarに含まれたファイルをインスタンスフォルダに展開  
 - JNIを利用したネイティブライブラリの読み込み  
-- ライセンス的に再配布可能なサードパーティー製ライブラリの同梱(Registrate/MixinSquared/FancyTabSections/Flywheel/Ponder)
+- ライセンス的に再配布可能なサードパーティー製ライブラリの同梱(Registrate/MixinSquared/FancyTabSections/Flywheel/Ponder/AnvilLib)
 ## 今後追加したい機能  
 - EpicCoreAPIの移植(MIT)  
 - JVM引数を変更し再起動するConfig
-- Java Agentを使用する機能の簡略化
+- Java Agentを使用する機能の簡略化(WIP)
 - Kotlinランタイムの起動
 - KubeJSとの連携  
 - Veil/Irisを使用したシェーダーユーティリティ  

@@ -16,6 +16,7 @@ import net.minecraft.core.RegistryAccess
 import net.minecraft.resources.ResourceKey
 
 object DynamicRegistryAPI {
+    private val ADDITIONAL_REGISTRIES = mutableMapOf<ResourceKey<out Registry<out Any>>, Registry<*>>()
     @Suppress("UNCHECKED_CAST")
     fun clear(
         registryAccess: RegistryAccess,
@@ -73,6 +74,8 @@ object DynamicRegistryAPI {
             registry as? MappedRegistry<Any>
                 ?: return
         val accessor = mappedRegistry as MappedRegistryAccessor<Any>
+
+        ADDITIONAL_REGISTRIES[resourceKey] = registry
 
         val byId = accessor.entryById
         val byKey = accessor.entryByKey
